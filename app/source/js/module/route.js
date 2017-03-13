@@ -3,7 +3,7 @@
  */
 tgApp.config(['$stateProvider','$urlRouterProvider',function ($stateProvider,$urlRouterProvider) {
   // $urlRouterProvider.when('','/main.admin.frontPage').otherwise('/main.admin.frontPage');
-  $urlRouterProvider.when('','/main/admin/frontPage').otherwise('/main/admin/frontPage');
+  $urlRouterProvider.when('','/main/admin/createCea').otherwise('/main/admin/createCea');
   $stateProvider
     .state('login',{//登录页
       url:'/login',
@@ -38,7 +38,20 @@ tgApp.config(['$stateProvider','$urlRouterProvider',function ($stateProvider,$ur
           controller: 'frontPageController'
         }
       }
-    });
+    })
+    .state('main.admin.createCea',{//资本性支出申请表
+      url:'/createCea',
+      views: {
+        'content@main': {
+          templateUrl: 'template/sidebar/createCea.html',
+          controller: 'createCeaController'
+        }
+      }
+    })
+
+
+
+  ;
 
 
 }]);
