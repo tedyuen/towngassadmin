@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
 <head>
-  <title>MYX Dashboard</title>
+  <title>华衍水务</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -15,6 +15,7 @@
     <!-- libraries -->
     <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
     <link rel="stylesheet" type="text/css" href="css/elements/form.css" />
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css" />
     <!--<link rel="stylesheet" type="text/css" href="css/elements/bootstrap-wysihtml5.css" />-->
 
 
@@ -28,7 +29,7 @@
     <![endif]-->
 
 </head>
-<body>
+<body ng-controller="createCeaController">
 
     <!-- navbar -->
     <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
@@ -274,14 +275,14 @@
                       <div class="form-group col-md-6">
                       <label class="col-lg-3 control-label">CEA编号:</label>
                           <div class="col-lg-9">
-                          <input type="text" name="cea" placeholder="" class="bg-focus form-control">
+                          <input type="text" name="cea" ng-model="params.ceacode" class="bg-focus form-control">
                           </div>
                       </div>
 
                       <div class="form-group col-md-6">
                           <label class="col-lg-3 control-label">地点:</label>
                           <div class="col-lg-9">
-                          <input type="text" name="position" placeholder="" class="bg-focus form-control">
+                          <input type="text" ng-model="params.position" name="position" placeholder="" class="bg-focus form-control">
                           </div>
                       </div>
 
@@ -317,35 +318,35 @@
                       <div class="form-group col-md-6">
                         <label class="col-lg-3 control-label">项目名称:</label>
                         <div class="col-lg-9">
-                          <input type="text" name="" placeholder="" class="bg-focus form-control">
+                          <input type="text"ng-model="params.proname" placeholder="" class="bg-focus form-control">
                         </div>
                       </div>
 
                       <div class="form-group col-md-6">
                         <label class="col-lg-3 control-label">开发商:</label>
                         <div class="col-lg-9">
-                          <input type="text" name="" placeholder="" class="bg-focus form-control">
+                          <input type="text" ng-model="params.developers" placeholder="" class="bg-focus form-control">
                         </div>
                       </div>
 
                       <div class="form-group col-md-6">
                         <label class="col-lg-3 control-label">开工日期:</label>
                         <div class="col-lg-9">
-                          <input class="input-small form-control datepicker" size="16" type="text" value="" data-date-format="yyyy-mm-dd" >
+                          <input class="input-small form-control datepicker" ng-model="params.starttime" size="16" type="text" value="" data-date-format="yyyy-mm-dd" >
                         </div>
                       </div>
 
                       <div class="form-group col-md-6">
                         <label class="col-lg-3 control-label">预计完工日期:</label>
                         <div class="col-lg-9">
-                          <input class="input-small form-control datepicker" size="16" type="text" value="" data-date-format="yyyy-mm-dd" >
+                          <input class="input-small form-control datepicker" ng-model="params.endtime" size="16" type="text" value="" data-date-format="yyyy-mm-dd" >
                         </div>
                       </div>
 
                       <div class="form-group col-md-6">
                         <label class="col-lg-3 control-label">申请部门:</label>
                         <div class="col-lg-9">
-                          <input type="text" name="" placeholder="" class="bg-focus form-control">
+                          <input type="text" ng-model="params.applydepart" placeholder="" class="bg-focus form-control">
                         </div>
                       </div>
 
@@ -372,77 +373,192 @@
             <div class="panel panel-default">
               <div class="panel-heading"><strong style="font-size: 15px;">表前比例</strong></div>
               <div class="panel-body form-horizontal">
+                <div class="col-md-6">
 
-                  <div class="form-group">
-                    <label class="col-lg-3 control-label">Photo</label>
-                    <div class="col-lg-9 media">
-                      <div class="bg-light pull-left text-center media-large thumb-large">
-                        <i class="fa fa-user fa-4x inline icon-light m-t-large m-b-large"></i>
-                      </div>
-
-                      <div class="media-body">
-                        <input type="file" name="file" title="Change" class="btn-custom btn-small btn-info"><br>
-                        <button class="btn btn-small btn-default">Delete</button>
-                      </div>
-                    </div>
+                  <div class="form-group col-md-12">
+                    <label class="control-label col-lg-offset-1">
+                      <h5><strong>1.预计工程成本</strong></h5>
+                    </label>
                   </div>
-
-                  <div class="form-group">
-                    <label class="col-lg-3 control-label">Email</label>
-                    <div class="col-lg-8">
-                      <input type="text" name="email" placeholder="test@example.com" class="bg-focus form-control" data-required="true" data-type="email">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-lg-3 control-label">Password</label>
-                    <div class="col-lg-8">
-                      <input type="password" name="password" placeholder="Password" class="bg-focus form-control">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-lg-3 control-label">Username</label>
-                    <div class="col-lg-8">
-                      <input type="text" name="username" placeholder="Username" data-required="true" class="form-control">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-lg-3 control-label">Account</label>
-                    <div class="col-lg-4">
-                      <select name="account" class="form-control">
-                        <option value="1">Editor</option>
-                        <option value="0">Admin</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-lg-3 control-label">Registered</label>
+                  <div class="form-group col-md-12">
+                    <label class="col-lg-3 control-label">人工费(A):</label>
                     <div class="col-lg-9">
-                      <input type="text" class="combodate form-control" data-format="DD-MM-YYYY" data-template="D  MMM  YYYY" name="datetime" value="04-12-2015">
+                      <input type="number" ng-model="params.feea" ng-change="cal()" class="bg-focus form-control">
+                    </div>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label class="col-lg-3 control-label">材料费(B):</label>
+                    <div class="col-lg-9">
+                      <input type="number" ng-model="params.feeb" ng-change="cal()" class="bg-focus form-control">
+                    </div>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label class="col-lg-3 control-label">综合费用(C):</label>
+                    <div class="col-lg-9">
+                      <input type="number" ng-model="params.feec" ng-change="cal()" class="bg-focus form-control">
+                    </div>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label class="col-lg-3 control-label">外包成本(D):</label>
+                    <div class="col-lg-9">
+                      <input type="number" ng-model="params.feed" ng-change="cal()" class="bg-focus form-control">
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <label class="col-lg-3 control-label">Profile</label>
-                    <div class="col-lg-8">
-                      <textarea placeholder="Profile" rows="5" class="form-control" data-trigger="keyup" data-rangelength="[20,200]"></textarea>
-                      <div class="checkbox">
-                        <label>
-                          <input name="agree" type="checkbox"> Agree the <a href="#">terms and policy</a>
-                        </label>
-                      </div>
+                  <div class="form-group col-md-12">
+                    <label class="col-lg-5 control-label">小计(E=A+B+C+D):</label>
+                    <div class="col-lg-7">
+                      <input type="number" ng-model="params.feee" disabled placeholder="" class="bg-focus form-control">
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <div class="col-lg-9 pull-right">
-                      <button type="submit" class="btn btn-default">Cancel</button>
-                      <button type="submit" class="btn btn-info">Save changes</button>
+                  <div class="form-group col-md-12">
+                    <label class="control-label col-lg-offset-1">
+                      <h5><strong>2.预计工程费用</strong></h5>
+                    </label>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label class="col-lg-3 control-label">设计费(F):</label>
+                    <div class="col-lg-9">
+                      <input type="number" ng-model="params.feef" ng-change="cal()" class="bg-focus form-control">
                     </div>
                   </div>
+                  <div class="form-group col-md-12">
+                    <label class="col-lg-3 control-label">监理费(G):</label>
+                    <div class="col-lg-9">
+                      <input type="number" ng-model="params.feeg" ng-change="cal()" class="bg-focus form-control">
+                    </div>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label class="col-lg-3 control-label">审计费(H):</label>
+                    <div class="col-lg-9">
+                      <input type="number" ng-model="params.feeh" ng-change="cal()" class="bg-focus form-control">
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group col-md-12">
+                    <label class="col-lg-3 control-label">测绘费(I):</label>
+                    <div class="col-lg-9">
+                      <input type="number" ng-model="params.feei" ng-change="cal()" class="bg-focus form-control">
+                    </div>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label class="col-lg-3 control-label">其他费用(J):</label>
+                    <div class="col-lg-9">
+                      <input type="number" ng-model="params.feej" ng-change="cal()" class="bg-focus form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group col-md-12">
+                    <label class="col-lg-5 control-label">小计(K=F+G+H+I+J):</label>
+                    <div class="col-lg-7">
+                      <input type="number" ng-model="params.feek" disabled placeholder="" class="bg-focus form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group col-md-12">
+                    <label class="control-label col-lg-5">
+                      <h5><strong>3.预计总成本(L=K+E)</strong></h5>
+                    </label>
+                    <div class="col-lg-7">
+                      <input type="number" ng-model="params.feel" disabled placeholder="" class="bg-focus form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group col-md-12">
+                    <label class="control-label col-lg-5">
+                      <h5><strong>4.预计总收入(M)</strong></h5>
+                    </label>
+                    <div class="col-lg-7">
+                      <input type="number" ng-model="params.feem" ng-change="cal()" class="bg-focus form-control">
+                    </div>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label class="control-label col-lg-5">
+                      <h5><strong>5.预计毛利(N=M-L)</strong></h5>
+                    </label>
+                    <div class="col-lg-7">
+                      <input type="number" ng-model="params.feen" disabled placeholder="" class="bg-focus form-control">
+                    </div>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label class="control-label col-lg-5">
+                      <h5><strong>6.预计毛利率(O=N/M)</strong></h5>
+                    </label>
+                    <div class="col-lg-7">
+                      <input type="number" ng-model="params.feeo" disabled placeholder="" class="bg-focus form-control">
+                    </div>
+                  </div>
+
+                  <div class="form-group col-md-12">
+                    <label class="col-lg-3 control-label">备注:</label>
+                    <div class="col-lg-9">
+                      <input type="text" ng-model="params.remark1" placeholder="" class="bg-focus form-control">
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-12">
+            <div class="panel panel-default">
+              <!--<div class="panel-heading"><strong style="font-size: 15px;">表前比例</strong></div>-->
+              <div class="panel-body form-horizontal">
+                <div class="col-md-4">
+                  <div class="form-group col-md-12">
+                    <label class="col-lg-3 control-label">申请人:</label>
+                    <div class="col-lg-9">
+                      <input type="text" ng-model="params.applyer" placeholder="" class="bg-focus form-control">
+                    </div>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label class="col-lg-3 control-label">备注:</label>
+                    <div class="col-lg-9">
+                      <input type="text" ng-model="params.remark2" placeholder="" class="bg-focus form-control">
+                    </div>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label class="col-lg-3 control-label">日期:</label>
+                    <div class="col-lg-9">
+                      <input class="input-small form-control datepicker" ng-model="params.date1" size="16" type="text" value="" data-date-format="yyyy-mm-dd" >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-group col-md-12">
+                    <label class="col-lg-3 control-label">审批记录:</label>
+                    <div class="col-lg-9">
+                      <input type="text" ng-model="params.record" placeholder="" class="bg-focus form-control">
+                    </div>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label class="col-lg-3 control-label">意见/建议:</label>
+                    <div class="col-lg-9">
+                      <input type="text" ng-model="params.opinion" placeholder="" class="bg-focus form-control">
+                    </div>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label class="col-lg-3 control-label">日期:</label>
+                    <div class="col-lg-9">
+                      <input class="input-small form-control datepicker" ng-model="params.date2" size="16" type="text" value="" data-date-format="yyyy-mm-dd" >
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                  <div class="" style="text-align: center;margin-top: 20px;">
+                    <button type="submit" class="btn btn-info" ng-click="submit()">提交</button>
+                    <button type="submit" class="btn btn-default" style="margin-left: 15px;" ng-click="reset()">重置</button>
+                  </div>
+                </div>
+
 
               </div>
             </div>
@@ -453,17 +569,11 @@
 
 
 
-
-
-
             <div class="clearfix"></div>
              <footer id="footer">
                 <div class="text-center clearfix">
-                    <p><small>&copy myxdashboard 2014, Admin dashboard framework base on bootstrap</small>
-                        <br /><br />
-                        <a href="#" class="btn btn-xs btn-circle btn-twitter"><i class="fa fa-twitter"></i></a>
-                        <a href="#" class="btn btn-xs btn-circle btn-facebook"><i class="fa fa-facebook"></i></a>
-                        <a href="#" class="btn btn-xs btn-circle btn-gplus"><i class="fa fa-google-plus"></i></a>
+                    <p><small>华衍水务有限公司 版权所有 Copyright 2017 All Rights Reserved</small>
+
                     </p>
                 </div>
             </footer>
@@ -498,33 +608,10 @@
     <script src="js/tables/jquery.peity.min.js"></script>
     <script src="js/tables/peity-demo.js"></script>
     <script src="js/tables/icheck.min.js"></script>
+    <script src="js/sweetalert.min.js"></script>
 
-    <!--wysiwyg editor -->
-    <!--<script src="js/editor/wysihtml5-0.3.0.js"></script>-->
-    <!--<script src="js/editor/bootstrap3-wysihtml5.js"></script>-->
-
-
-     <script type="text/javascript">
-        //wysihtml5
-//       $('.textarea').wysihtml5({
-//        "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
-//        "emphasis": true, //Italics, bold, etc. Default true
-//        "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
-//        "html": true, //Button which allows you to edit the generated HTML. Default false
-//        "link": true, //Button to insert a link. Default true
-//        "image": true, //Button to insert an image. Default true,
-//        "color": false, //Button to change color of font
-//        "size": 'sm' //Button size like sm, xs etc.
-//    });
-
-
-            $(document).ready(function () {
-                $('.i-checks').iCheck({
-                    checkboxClass: 'icheckbox_square-green',
-                    radioClass: 'iradio_square-green',
-                });
-            });
-        </script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/createCea.js"></script>
 
 </body>
 
