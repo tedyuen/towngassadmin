@@ -300,7 +300,7 @@ textarea::-webkit-input-placeholder {
 	.navbar-inverse .navbar-brand {
 		text-transform: uppercase;
 		font-weight: lighter;
-    padding: 3px 3px;
+    padding: 15px 14px;
 		}
 
 	.navbar-inverse .navbar-brand strong {
@@ -308,8 +308,8 @@ textarea::-webkit-input-placeholder {
 		}
 
 	.navbar-brand img.logo{
-		width: 168px;
-		height: 42px;
+    width: 144px;
+    height: 18px;
 		}
 
 

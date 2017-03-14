@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-   <head>
+<html ng-app="myApp" >
+   <head lang="zh">
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +16,10 @@
       <link href="../plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
       <!-- morris CSS -->
       <link href="../plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
-      <!-- animation CSS -->
+     <link href="../plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+     <link href="../plugins/bower_components/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
+
+     <!-- animation CSS -->
       <link href="css/animate.css" rel="stylesheet">
       <!-- Custom CSS -->
       <link href="css/style.css" rel="stylesheet">
@@ -28,8 +31,13 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
+     <style>
+       .form-group{
+         margin-bottom: 0px;
+       }
+     </style>
    </head>
-   <body>
+   <body ng-controller="createCeaController">
       <!-- Preloader -->
       <div class="preloader">
          <div class="cssload-speeding-wheel"></div>
@@ -41,11 +49,17 @@
                <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
                <div class="top-left-part">
                   <a class="logo" href="index.html">
-                     <b>
-                        <!--This is dark logo icon--><img src="../plugins/images/pixeladmin-logo.png" alt="home" class="dark-logo" /><!--This is light logo icon--><img src="../plugins/images/pixeladmin-logo-dark.png" alt="home" class="light-logo" />
-                     </b>
-                     <span class="hidden-xs">
-                        <!--This is dark logo text--><img src="../plugins/images/pixeladmin-text.png" alt="home" class="dark-logo" /><!--This is light logo text--><img src="../plugins/images/pixeladmin-text-dark.png" alt="home" class="light-logo" />
+                    <b>
+                      <!--This is dark logo icon-->
+                      <img src="../plugins/images/pixeladmin-logo.png" alt="home" class="dark-logo" />
+                      <!--This is light logo icon-->
+                      <img src="images/logo-1.png" alt="home" class="light-logo" width="30" />
+                    </b>
+                    <span class="hidden-xs">
+                        <!--This is dark logo text-->
+                       <img src="../plugins/images/pixeladmin-text.png" alt="home" class="dark-logo" />
+                      <!--This is light logo text-->
+                       <img src="images/logo-2.png" alt="home" class="light-logo" width="120" />
                      </span>
                   </a>
                </div>
@@ -58,34 +72,29 @@
                      </a>
                      <ul class="dropdown-menu mailbox animated bounceInDown">
                        <li>
-                         <div class="drop-title">您有4条未读消息</div>
+                         <div class="drop-title">您有3条未读消息</div>
                        </li>
                        <li>
                          <div class="message-center">
                            <a href="#">
                              <div class="user-img"> <img src="../plugins/images/users/pawandeep.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
                              <div class="mail-contnet">
-                               <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span> </div>
+                               <h5>张经理</h5> <span class="mail-desc">明天上午7:30，会议室开部门会议。</span> <span class="time">9:30 AM</span> </div>
                            </a>
                            <a href="#">
                              <div class="user-img"> <img src="../plugins/images/users/sonu.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
                              <div class="mail-contnet">
-                               <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span> </div>
+                               <h5>客户小王</h5> <span class="mail-desc">您好！下周有时间的话，能否就我们之前商讨的方案进行一轮调研?</span> <span class="time">9:10 AM</span> </div>
                            </a>
                            <a href="#">
                              <div class="user-img"> <img src="../plugins/images/users/arijit.jpg" alt="user" class="img-circle"> <span class="profile-status away pull-right"></span> </div>
                              <div class="mail-contnet">
-                               <h5>Arijit Sinh</h5> <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span> </div>
-                           </a>
-                           <a href="#">
-                             <div class="user-img"> <img src="../plugins/images/users/pawandeep.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
-                             <div class="mail-contnet">
-                               <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
+                               <h5>陈工</h5> <span class="mail-desc">昨天的报价单已经发您邮箱了，请注意查收。</span> <span class="time">9:08 AM</span> </div>
                            </a>
                          </div>
                        </li>
                        <li>
-                         <a class="text-center" href="javascript:void(0);"> <strong>See all notifications</strong> <i class="fa fa-angle-right"></i> </a>
+                         <a class="text-center" href="javascript:void(0);"> <strong>查看所有通知</strong> <i class="fa fa-angle-right"></i> </a>
                        </li>
                      </ul>
                      <!-- /.dropdown-messages -->
@@ -177,7 +186,7 @@
                        <li role="separator" class="divider"></li>
                        <li><a href="#"><i class="ti-settings"></i> 账号设置</a></li>
                        <li role="separator" class="divider"></li>
-                       <li><a href="login.html"><i class="fa fa-power-off"></i> 注销</a></li>
+                       <li><a href="#"><i class="fa fa-power-off"></i> 注销</a></li>
                      </ul>
                   </div>
                </div>
@@ -191,13 +200,13 @@
                      </div>
                      <!-- /input-group -->
                   </li>
-                  <li class="nav-small-cap m-t-10">--- 主菜单</li>
+                  <li class="nav-small-cap m-t-10"></li>
                   <li>
-                     <a href="index.html" class="waves-effect active"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> 资本性支出申请 <span class="fa arrow"></span> </span></a>
+                     <a href="create_cea.html" class="waves-effect active"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> 资本性支出申请 <span class="fa arrow"></span> </span></a>
 
                   </li>
                   <li>
-                     <a href="inbox.html" class="waves-effect"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">资本性支出申请查询<span class="fa arrow"></span></span></a>
+                     <a href="cea_list.html" class="waves-effect"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">资本性支出查询<span class="fa arrow"></span></span></a>
 
                   </li>
                   <li>
@@ -239,13 +248,12 @@
             <div class="container-fluid">
                <div class="row bg-title">
                   <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                     <h4 class="page-title">Dashboard 1</h4>
+                     <h4 class="page-title">资本性支出申请</h4>
                   </div>
                   <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                     <a href="http://wrappixel.com/templates/pixeladmin/" target="_blank" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">Buy Now</a>
                      <ol class="breadcrumb">
-                        <li><a href="#">Dashboard</a></li>
-                        <li class="active">Dashboard 1</li>
+                        <li><a href="#">资本性支出申请表</a></li>
+                        <li class="active">资本性支出申请表</li>
                      </ol>
                   </div>
                   <!-- /.col-lg-12 -->
@@ -253,447 +261,408 @@
 
                <!-- /.row -->
                <div class="row">
-                   <!-- .col -->
-                  <div class="col-md-7 col-sm-12 col-xs-12">
-                     <div class="white-box">
-                        <h3 class="box-title">Yearly Sales</h3>
-                        <ul class="list-inline text-right">
-                           <li>
-                              <h5><i class="fa fa-circle m-r-5" style="color: #00b5c2;"></i>iPhone</h5>
-                           </li>
-                           <li>
-                              <h5><i class="fa fa-circle m-r-5" style="color: #f75b36;"></i>iPad</h5>
-                           </li>
-                           <li>
-                              <h5><i class="fa fa-circle m-r-5" style="color: #2c5ca9;"></i>iPod</h5>
-                           </li>
-                        </ul>
-                        <div id="morris-area-chart" style="height: 356px;"></div>
-                     </div>
-                  </div>
-                  <!-- /.col -->
-                   <div class="col-md-5 col-sm-6">
-                       <div class="row">
-                         <!-- .col -->
-                          <div class="col-md-6 col-sm-12">
-                            <div class="white-box text-center bg-megna">
-                                <h1 class="text-white counter">165</h1>
-                                <p class="text-white">New items</p>
-                            </div>
-                          </div>
-                          <!-- /.col -->
-                          <!-- .col -->
-                          <div class="col-md-6 col-sm-12">
-                            <div class="white-box text-center bg-inverse">
-                                <h1 class="text-white counter">2065</h1>
-                                <p class="text-white">Feeds</p>
-                            </div>
-                          </div>
-                          <!-- /.col -->
-                          <!-- .col -->
-                          <div class="col-md-6 col-sm-12">
-                            <div class="white-box text-center bg-info">
-                                <h1 class="counter text-white">465</h1>
-                                <p class="text-white">Reviews</p>
-                            </div>
-                          </div>
-                          <!-- /.col -->
-                          <!-- .col -->
-                          <div class="col-md-6 col-sm-12">
-                             <div class="white-box text-center bg-danger">
-                                    <h1 class="text-white counter">6555</h1>
-                                    <p class="text-white">Customers</p>
-                                </div>
-                          </div>
-                          <!-- /.col -->
-                          <!-- .col -->
-                          <div class="col-md-12 col-sm-12">
-                             <div class="white-box">
-                                    <h3 class="box-title">Revenue of the site</h3>
-                                    <ul class="list-inline two-part">
-                                        <li><i class="icon-folder-alt text-danger"></i></li>
-                                        <li class="text-right"><span class="counter">36411</span></li>
-                                    </ul>
-                                </div>
-                          </div>
-                          <!-- /.col -->
-                       </div>
-                   </div>
+                 <div class="col-md-12">
+                   <div class="white-box">
+                     <p>资本性支出申请表</p>
 
+                     <div class="row m-t-15">
+                     <div class="col-md-6">
+                       <div class="form-group">
+                         <div class="input-group">
+                           <span class="input-group-addon">CEA编号:</span>
+                           <input type="text" class="form-control" name="shippingName" ng-model="params.ceacode" >
+                         </div>
+                         <div class="help-block with-errors">
+                         </div><!-- 表单验证错误,form-group标签中添加has-error -->
+                       </div>
+                     </div>
+                     <div class="col-md-6">
+                       <div class="form-group">
+                         <div class="input-group">
+                           <span class="input-group-addon">地点:</span>
+                           <input type="text" class="form-control" name="shippingNumber" ng-model="params.position" >
+                         </div>
+                         <div class="help-block with-errors">
+                         </div>
+                       </div>
+                     </div>
+
+                     <div class="col-md-6">
+                       <div class="form-group">
+                         <div class="input-group">
+                           <span class="input-group-addon">工程性质:</span>
+                           <select class="form-control" name="orderType">
+                             <option value="0">市政新增管网</option>
+                             <option value="1">市政管网改造</option>
+                             <option value="2">接水工程</option>
+                             <option value="3">农村管网改造</option>
+                             <option value="4">乡镇新增管网</option>
+                             <option value="5">乡镇管网改造</option>
+                             <option value="6">小区给水安装</option>
+                             <option value="7">一表一户改造</option>
+                             <option value="8">二次供水</option>
+                           </select>
+                         </div>
+                         <div class="help-block with-errors"></div>
+                       </div>
+                     </div>
+                       <div class="col-md-6">
+                         <div class="form-group">
+                           <div class="input-group">
+                             <span class="input-group-addon">小区工程性质:</span>
+                             <select class="form-control" name="orderType">
+                               <option value="0">庭院管工程</option>
+                               <option value="1">立管工程</option>
+                               <option value="2">二次供水泵房工程</option>
+                               <option value="3">其他</option>
+                             </select>
+                           </div>
+                           <div class="help-block with-errors"></div>
+                         </div>
+                       </div>
+
+                       <div class="col-md-6">
+                         <div class="form-group">
+                           <div class="input-group">
+                             <span class="input-group-addon">项目名称:</span>
+                             <input type="text" class="form-control" ng-model="params.proname" >
+                           </div>
+                           <div class="help-block with-errors">
+                           </div><!-- 表单验证错误,form-group标签中添加has-error -->
+                         </div>
+                       </div>
+                       <div class="col-md-6">
+                         <div class="form-group">
+                           <div class="input-group">
+                             <span class="input-group-addon">开发商:</span>
+                             <input type="text" class="form-control" name="shippingNumber" ng-model="params.developers" >
+                           </div>
+                           <div class="help-block with-errors">
+                           </div>
+                         </div>
+                       </div>
+
+
+
+                     <div class="col-md-6">
+                       <div class="form-group">
+                         <div class="input-group">
+                           <span class="input-group-addon">开工日期</span>
+                           <input type="text" class="form-control mydatepicker" name="shippingDate" placeholder="yyyy年mm月dd日" ng-model="params.starttime">
+                           <span class="input-group-addon"><i class="icon-calender"></i></span> </div>
+                         <div class="help-block with-errors">
+                         </div>
+                       </div>
+                     </div>
+
+                       <div class="col-md-6">
+                       <div class="form-group">
+                         <div class="input-group">
+                           <span class="input-group-addon">预计完工日期</span>
+                           <input type="text" class="form-control mydatepicker" name="shippingDate" placeholder="yyyy年mm月dd日" ng-model="params.endtime">
+                           <span class="input-group-addon"><i class="icon-calender"></i></span> </div>
+                         <div class="help-block with-errors">
+                         </div>
+                       </div>
+                     </div>
+
+                       <div class="col-md-6">
+                         <div class="form-group">
+                           <div class="input-group">
+                             <span class="input-group-addon">申请部门:</span>
+                             <input type="text" class="form-control" ng-model="params.applydepart" >
+                           </div>
+                           <div class="help-block with-errors">
+                           </div><!-- 表单验证错误,form-group标签中添加has-error -->
+                         </div>
+                       </div>
+
+                       <div class="col-md-6">
+                         <div class="form-group">
+                           <div class="input-group">
+                             <span class="input-group-addon">客户类别:</span>
+                             <select class="form-control" name="orderType">
+                               <option value="0">商业户</option>
+                               <option value="1">工业户</option>
+                               <option value="2">民建户(小区户)</option>
+                               <option value="3">民现户(家庭零星户)</option>
+                             </select>
+                           </div>
+                           <div class="help-block with-errors"></div>
+                         </div>
+                       </div>
+
+                     </div>
+                   </div>
+                   </div>
+                 </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="white-box">
+                    <p>表前比例</p>
+
+                    <div class="row  m-t-15">
+                      <div class="col-md-6">
+                        <p class=""><h5><strong>1.预计工程成本</strong></h5></p>
+                        <div class="col-md-12 m-t-10">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon">人工费:</span>
+                              <input type="number" class="form-control"  ng-change="cal()" ng-model="params.feea" >
+                            </div>
+                            <div class="help-block with-errors">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon">材料费:</span>
+                              <input type="number" class="form-control"  ng-change="cal()" ng-model="params.feeb" >
+                            </div>
+                            <div class="help-block with-errors">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon">综合费用:</span>
+                              <input type="number" class="form-control"  ng-change="cal()" ng-model="params.feec" >
+                            </div>
+                            <div class="help-block with-errors">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon">外包成本:</span>
+                              <input type="number" class="form-control"  ng-change="cal()" ng-model="params.feed" >
+                            </div>
+                            <div class="help-block with-errors">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group" style="margin-bottom: 25px;">
+                            <div class="input-group">
+                              <span class="input-group-addon">小计:</span>
+                              <input type="number" class="form-control" disabled ng-model="params.feee" >
+                            </div>
+                            <div class="help-block with-errors">
+                            </div>
+                          </div>
+                        </div>
+                        <p class=""><h5><strong>2.预计工程费用</strong></h5></p>
+
+                        <div class="col-md-12 m-t-10">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon">设计费:</span>
+                              <input type="number" class="form-control"  ng-change="cal()" ng-model="params.feef" >
+                            </div>
+                            <div class="help-block with-errors">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon">监理费:</span>
+                              <input type="number" class="form-control"  ng-change="cal()" ng-model="params.feeg" >
+                            </div>
+                            <div class="help-block with-errors">
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+
+                      <div class="col-md-6">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon">审计费:</span>
+                              <input type="number" class="form-control"  ng-change="cal()" ng-model="params.feeh" >
+                            </div>
+                            <div class="help-block with-errors">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon">测绘费:</span>
+                              <input type="number" class="form-control"  ng-change="cal()" ng-model="params.feei" >
+                            </div>
+                            <div class="help-block with-errors">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon">其他费用:</span>
+                              <input type="number" class="form-control"  ng-change="cal()" ng-model="params.feej" >
+                            </div>
+                            <div class="help-block with-errors">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon">小计:</span>
+                              <input type="number" class="form-control"  disabled ng-model="params.feek" >
+                            </div>
+                            <div class="help-block with-errors">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon">3.预计总成本:</span>
+                              <input type="number" class="form-control"  disabled ng-model="params.feel" >
+                            </div>
+                            <div class="help-block with-errors">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon">4.预计总收入:</span>
+                              <input type="number" class="form-control" ng-change="cal()" ng-model="params.feem" >
+                            </div>
+                            <div class="help-block with-errors">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon">5.预计毛利:</span>
+                              <input type="number" class="form-control"  disabled ng-model="params.feen" >
+                            </div>
+                            <div class="help-block with-errors">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon">6.预计毛利率:</span>
+                              <input type="number" class="form-control"  disabled ng-model="params.feeo" >
+                            </div>
+                            <div class="help-block with-errors">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon">备注:</span>
+                              <input type="text" class="form-control" ng-model="params.remark1" >
+                            </div>
+                            <div class="help-block with-errors">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
                </div>
                <!--row -->
 
-               <div class="row">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="white-box">
+                    <div class="row  m-t-15">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <div class="input-group">
+                            <span class="input-group-addon">申请人:</span>
+                            <input type="text" class="form-control" ng-model="params.applyer" >
+                          </div>
+                          <div class="help-block with-errors">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="input-group">
+                            <span class="input-group-addon">备注:</span>
+                            <input type="text" class="form-control" ng-model="params.remark2" >
+                          </div>
+                          <div class="help-block with-errors">
+                          </div>
+                        </div>
 
-                  <div class="col-md-4 col-lg-3 col-sm-6 col-xs-12">
-                     <div class="white-box m-b-15">
-                        <h3 class="box-title">Tax Deduction</h3>
-                        <div class="row">
-                           <div class="col-md-6 col-sm-6 col-xs-6  m-t-30">
-                              <h1 class="text-info">$647</h1>
-                              <p class="text-muted">APRIL 2016</p>
-                              <b>(150 Sales)</b>
-                           </div>
-                           <div class="col-md-6 col-sm-6 col-xs-6">
-                              <div id="sparkline2dash" class="text-center"></div>
-                           </div>
+                        <div class="form-group">
+                          <div class="input-group">
+                            <span class="input-group-addon">日期:</span>
+                            <input type="text" class="form-control mydatepicker"  placeholder="yyyy年mm月dd日" ng-model="params.date1">
+                            <span class="input-group-addon"><i class="icon-calender"></i></span> </div>
+                          <div class="help-block with-errors">
+                          </div>
                         </div>
-                     </div>
-                  </div>
-                  <div class="col-md-4 col-lg-3 col-sm-6 col-xs-12">
-                     <div class="white-box m-b-15">
-                        <h3 class="box-title">Shipment</h3>
-                        <div class="row">
-                           <div class="col-md-6 col-sm-6 col-xs-6  m-t-30">
-                              <h1 class="text-megna">$347</h1>
-                              <p class="text-muted">APRIL 2016</p>
-                              <b class="">(150 Sales)</b>
-                           </div>
-                           <div class="col-md-6 col-sm-6 col-xs-6">
-                              <div id="sales1" class="text-center"></div>
-                           </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <div class="input-group">
+                            <span class="input-group-addon">审批记录:</span>
+                            <input type="text" class="form-control" ng-model="params.record" >
+                          </div>
+                          <div class="help-block with-errors">
+                          </div>
                         </div>
-                     </div>
-                  </div>
-                  <div class="col-md-4 col-lg-3 col-sm-6 col-xs-12">
-                     <div class="white-box m-b-15">
-                        <h3 class="box-title">Revenue Generate</h3>
-                        <div class="row">
-                           <div class="col-md-6 col-sm-6 col-xs-6  m-t-30">
-                              <h1 class="text-danger">$647</h1>
-                              <p class="text-muted">APRIL 2016</p>
-                              <b>(150 Sales)</b>
-                           </div>
-                           <div class="col-md-6 col-sm-6 col-xs-6">
-                              <div id="sparkline2dash2" class="text-center"></div>
-                           </div>
+                        <div class="form-group">
+                          <div class="input-group">
+                            <span class="input-group-addon">意见/建议:</span>
+                            <input type="text" class="form-control" ng-model="params.opinion" >
+                          </div>
+                          <div class="help-block with-errors">
+                          </div>
                         </div>
-                     </div>
-                  </div>
-                  <div class="col-md-4 col-lg-3 col-sm-6 col-xs-12">
-                     <div class="white-box m-b-15">
-                        <h3 class=" box-title">Order Got</h3>
-                        <div class="row">
-                           <div class="col-md-6 col-sm-6 col-xs-6  m-t-30">
-                              <h1 class="">$347</h1>
-                              <p class="text-muted">APRIL 2016</p>
-                              <b class="">(150 Sales)</b>
-                           </div>
-                           <div class="col-md-6 col-sm-6 col-xs-6">
-                              <div id="sales12" class="text-center"></div>
-                           </div>
+
+                        <div class="form-group">
+                          <div class="input-group">
+                            <span class="input-group-addon">日期:</span>
+                            <input type="text" class="form-control mydatepicker"  placeholder="yyyy年mm月dd日" ng-model="params.date2">
+                            <span class="input-group-addon"><i class="icon-calender"></i></span> </div>
+                          <div class="help-block with-errors">
+                          </div>
                         </div>
-                     </div>
-                  </div>
-               </div>
-               <!-- row -->
-               <div class="row">
-                  <div class="col-md-4 col-xs-12 col-sm-6">
-                     <div class="white-box">
-                        <h3 class="box-title">To Do List</h3>
-                        <ul class="list-task list-group" data-role="tasklist">
-                           <li class="list-group-item" data-role="task">
-                              <div class="checkbox checkbox-info">
-                                 <input type="checkbox" id="inputSchedule" name="inputCheckboxesSchedule">
-                                 <label for="inputSchedule"> <span>Schedule meeting</span> </label>
-                              </div>
-                           </li>
-                           <li class="list-group-item" data-role="task">
-                              <div class="checkbox checkbox-info">
-                                 <input type="checkbox" id="inputCall" name="inputCheckboxesCall">
-                                 <label for="inputCall"> <span>Give Purchase report</span> <span class="label label-danger">Today</span> </label>
-                              </div>
-                           </li>
-                           <li class="list-group-item" data-role="task">
-                              <div class="checkbox checkbox-info">
-                                 <input type="checkbox" id="inputBook" name="inputCheckboxesBook">
-                                 <label for="inputBook"> <span>Book flight for holiday</span> </label>
-                              </div>
-                           </li>
-                           <li class="list-group-item" data-role="task">
-                              <div class="checkbox checkbox-info">
-                                 <input type="checkbox" id="inputForward" name="inputCheckboxesForward">
-                                 <label for="inputForward"> <span>Forward all tasks</span> <span class="label label-warning">2 weeks</span> </label>
-                              </div>
-                           </li>
-                           <li class="list-group-item" data-role="task">
-                              <div class="checkbox checkbox-info">
-                                 <input type="checkbox" id="inputRecieve" name="inputCheckboxesRecieve">
-                                 <label for="inputRecieve"> <span>Recieve shipment</span> </label>
-                              </div>
-                           </li>
-                           <li class="list-group-item" data-role="task">
-                              <div class="checkbox checkbox-info">
-                                 <input type="checkbox" id="inputForward2" name="inputCheckboxesd">
-                                 <label for="inputForward2"> <span>Important tasks</span> <span class="label label-success">2 weeks</span> </label>
-                              </div>
-                           </li>
-                        </ul>
-                     </div>
-                  </div>
-                  <div class="col-md-4 col-xs-12 col-sm-6">
-                     <div class="white-box">
-                        <h3 class="box-title">You have 5 new messages</h3>
-                        <div class="message-center">
-                           <a href="#">
-                              <div class="user-img"> <img src="../plugins/images/users/pawandeep.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
-                              <div class="mail-contnet">
-                                 <h5>Pavan kumar</h5>
-                                 <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span>
-                              </div>
-                           </a>
-                           <a href="#">
-                              <div class="user-img"> <img src="../plugins/images/users/sonu.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
-                              <div class="mail-contnet">
-                                 <h5>Sonu Nigam</h5>
-                                 <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span>
-                              </div>
-                           </a>
-                           <a href="#">
-                              <div class="user-img"> <img src="../plugins/images/users/arijit.jpg" alt="user" class="img-circle"> <span class="profile-status away pull-right"></span> </div>
-                              <div class="mail-contnet">
-                                 <h5>Arijit Sinh</h5>
-                                 <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span>
-                              </div>
-                           </a>
-                           <a href="#">
-                              <div class="user-img"> <img src="../plugins/images/users/genu.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
-                              <div class="mail-contnet">
-                                 <h5>Genelia Deshmukh</h5>
-                                 <span class="mail-desc">I love to do acting and dancing</span> <span class="time">9:08 AM</span>
-                              </div>
-                           </a>
-                           <a href="#" class="b-none">
-                              <div class="user-img"> <img src="../plugins/images/users/pawandeep.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
-                              <div class="mail-contnet">
-                                 <h5>Pavan kumar</h5>
-                                 <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span>
-                              </div>
-                           </a>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-md-4 col-sm-12 col-xs-12">
-                     <div class="white-box">
-                        <h3 class="box-title">Chat</h3>
-                        <div class="chat-box">
-                           <ul class="chat-list slimscroll" style="overflow: hidden;" tabindex="5005">
-                              <li>
-                                 <div class="chat-image"> <img alt="male" src="../plugins/images/users/sonu.jpg"> </div>
-                                 <div class="chat-body">
-                                    <div class="chat-text">
-                                       <h4>Sonu Nigam</h4>
-                                       <p> Hi, All! </p>
-                                       <b>10.00 am</b>
-                                    </div>
-                                 </div>
-                              </li>
-                              <li class="odd">
-                                 <div class="chat-image"> <img alt="Female" src="../plugins/images/users/genu.jpg"> </div>
-                                 <div class="chat-body">
-                                    <div class="chat-text">
-                                       <h4>Genelia</h4>
-                                       <p> Hi, How are you Sonu? ur next concert? </p>
-                                       <b>10.03 am</b>
-                                    </div>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="chat-image"> <img alt="male" src="../plugins/images/users/ritesh.jpg"> </div>
-                                 <div class="chat-body">
-                                    <div class="chat-text">
-                                       <h4>Ritesh</h4>
-                                       <p> Hi, Sonu and Genelia, </p>
-                                       <b>10.05 am</b>
-                                    </div>
-                                 </div>
-                              </li>
-                           </ul>
-                           <div class="row">
-                              <div class="col-sm-12">
-                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Say something"> <span class="input-group-btn">
-                                    <button class="btn btn-success" type="button">Send</button>
-                                    </span>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <!-- /.row -->
-               <!--/.row -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="white-box">
-                            <h3 class="box-title">Order Status</h3>
-                            <div class="table-responsive">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Invoice</th>
-                                            <th>User</th>
-                                            <th>Order date</th>
-                                            <th>Amount</th>
-                                            <th class="text-center">Status</th>
-                                            <th class="text-center">Tracking Number</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><a href="javascript:void(0)" class="btn-link"> Order #53431</a></td>
-                                            <td>Steve N. Horton</td>
-                                            <td><span class="text-muted"><i class="fa fa-clock-o"></i> Oct 22, 2014</span></td>
-                                            <td>$45.00</td>
-                                            <td class="text-center">
-                                                <div class="label label-table label-success">Paid</div>
-                                            </td>
-                                            <td class="text-center">-</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="javascript:void(0)" class="btn-link"> Order #53432</a></td>
-                                            <td>Charles S Boyle</td>
-                                            <td><span class="text-muted"><i class="fa fa-clock-o"></i> Oct 24, 2014</span></td>
-                                            <td>$245.30</td>
-                                            <td class="text-center">
-                                                <div class="label label-table label-info">Shipped</div>
-                                            </td>
-                                            <td class="text-center"><i class="fa fa-plane"></i> CGX0089734531</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="javascript:void(0)" class="btn-link"> Order #53433</a></td>
-                                            <td>Lucy Doe</td>
-                                            <td><span class="text-muted"><i class="fa fa-clock-o"></i> Oct 24, 2014</span></td>
-                                            <td>$38.00</td>
-                                            <td class="text-center">
-                                                <div class="label label-table label-info">Shipped</div>
-                                            </td>
-                                            <td class="text-center"><i class="fa fa-plane"></i> CGX0089934571</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="javascript:void(0)" class="btn-link"> Order #53434</a></td>
-                                            <td>Teresa L. Doe</td>
-                                            <td><span class="text-muted"><i class="fa fa-clock-o"></i> Oct 15, 2014</span></td>
-                                            <td>$77.99</td>
-                                            <td class="text-center">
-                                                <div class="label label-table label-info">Shipped</div>
-                                            </td>
-                                            <td class="text-center"><i class="fa fa-plane"></i> CGX0089734574</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="javascript:void(0)" class="btn-link"> Order #53435</a></td>
-                                            <td>Teresa L. Doe</td>
-                                            <td><span class="text-muted"><i class="fa fa-clock-o"></i> Oct 12, 2014</span></td>
-                                            <td>$18.00</td>
-                                            <td class="text-center">
-                                                <div class="label label-table label-success">Paid</div>
-                                            </td>
-                                            <td class="text-center">-</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="javascript:void(0)" class="btn-link">Order #53437</a></td>
-                                            <td>Charles S Boyle</td>
-                                            <td><span class="text-muted"><i class="fa fa-clock-o"></i> Oct 17, 2014</span></td>
-                                            <td>$658.00</td>
-                                            <td class="text-center">
-                                                <div class="label label-table label-danger">Refunded</div>
-                                            </td>
-                                            <td class="text-center">-</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="javascript:void(0)" class="btn-link">Order #536584</a></td>
-                                            <td>Scott S. Calabrese</td>
-                                            <td><span class="text-muted"><i class="fa fa-clock-o"></i> Oct 19, 2014</span></td>
-                                            <td>$45.58</td>
-                                            <td class="text-center">
-                                                <div class="label label-table label-warning">Unpaid</div>
-                                            </td>
-                                            <td class="text-center">-</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                      </div>
+
+                      <div class="col-md-12 m-t-20">
+                        <button type="submit"  ng-click="submit()" class="btn btn-primary waves-effect waves-light m-r-10">
+                          提交
+                        </button>
+                        <button type="submit"  ng-click="reset()" class="btn btn-success waves-effect waves-light m-r-10">
+                          重置
+                        </button>
+
+                      </div>
+
+
                     </div>
-                </div>
-               <!-- .right-sidebar -->
-               <div class="right-sidebar">
-                  <div class="slimscrollright">
-                     <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
-                     <div class="r-panel-body">
-                        <ul>
-                           <li><b>Layout Options</b></li>
-                           <li>
-                              <div class="checkbox checkbox-info">
-                                 <input id="checkbox1" type="checkbox" class="fxhdr">
-                                 <label for="checkbox1"> Fix Header </label>
-                              </div>
-                           </li>
-                           <li>
-                              <div class="checkbox checkbox-success">
-                                 <input id="checkbox4" type="checkbox" class="open-close">
-                                 <label for="checkbox4"> Toggle Sidebar </label>
-                              </div>
-                           </li>
-                           <li>
-                              <div class="checkbox checkbox-warning">
-                                 <input id="checkbox2" type="checkbox" class="fxsdr">
-                                 <label for="checkbox2"> Fix Sidebar </label>
-                              </div>
-                           </li>
-                        </ul>
-                        <ul id="themecolors" class="m-t-20">
-                           <li><b>With Light sidebar</b></li>
-                           <li><a href="javascript:void(0)" theme="default" class="default-theme working">1</a></li>
-                           <li><a href="javascript:void(0)" theme="green" class="green-theme">2</a></li>
-                           <li><a href="javascript:void(0)" theme="gray" class="yellow-theme">3</a></li>
-                           <li><a href="javascript:void(0)" theme="blue" class="blue-theme">4</a></li>
-                           <li><a href="javascript:void(0)" theme="purple" class="purple-theme">5</a></li>
-                           <li><a href="javascript:void(0)" theme="megna" class="megna-theme">6</a></li>
-                           <li><b>With Dark sidebar</b></li>
-                           <br/>
-                           <li><a href="javascript:void(0)" theme="default-dark" class="default-dark-theme">7</a></li>
-                           <li><a href="javascript:void(0)" theme="green-dark" class="green-dark-theme">8</a></li>
-                           <li><a href="javascript:void(0)" theme="gray-dark" class="yellow-dark-theme">9</a></li>
-                           <li><a href="javascript:void(0)" theme="blue-dark" class="blue-dark-theme">10</a></li>
-                           <li><a href="javascript:void(0)" theme="purple-dark" class="purple-dark-theme">11</a></li>
-                           <li><a href="javascript:void(0)" theme="megna-dark" class="megna-dark-theme">12</a></li>
-                        </ul>
-                        <ul class="m-t-20 chatonline">
-                           <li><b>Chat option</b></li>
-                           <li>
-                              <a href="javascript:void(0)"><img src="../plugins/images/users/varun.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
-                           </li>
-                           <li>
-                              <a href="javascript:void(0)"><img src="../plugins/images/users/genu.jpg" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a>
-                           </li>
-                           <li>
-                              <a href="javascript:void(0)"><img src="../plugins/images/users/ritesh.jpg" alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a>
-                           </li>
-                           <li>
-                              <a href="javascript:void(0)"><img src="../plugins/images/users/arijit.jpg" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a>
-                           </li>
-                           <li>
-                              <a href="javascript:void(0)"><img src="../plugins/images/users/govinda.jpg" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a>
-                           </li>
-                           <li>
-                              <a href="javascript:void(0)"><img src="../plugins/images/users/hritik.jpg" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a>
-                           </li>
-                           <li>
-                              <a href="javascript:void(0)"><img src="../plugins/images/users/john.jpg" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a>
-                           </li>
-                           <li>
-                              <a href="javascript:void(0)"><img src="../plugins/images/users/pawandeep.jpg" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a>
-                           </li>
-                        </ul>
-                     </div>
                   </div>
-               </div>
-               <!-- /.right-sidebar -->
+                </div>
+              </div>
+              <!--row -->
+
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2016 &copy; Pixel Admin brought to you by themedesigner.in </footer>
+            <footer class="footer text-center"> 2017 &copy; 华衍水务有限公司 版权所有 Copyright All Rights Reserved </footer>
          </div>
          <!-- /#page-wrapper -->
       </div>
@@ -724,17 +693,25 @@
       <script type="text/javascript">
          $(document).ready(function () {
              $.toast({
-                 heading: 'Welcome to Pixel admin'
-                 , text: 'Use the predefined ones, or specify a custom position object.'
+                 heading: '欢迎登录'
+                 , text: '管理员:李经理登录成功.有新的消息，请注意查收。'
                  , position: 'top-right'
                  , loaderBg: '#ff6849'
                  , icon: 'info'
                  , hideAfter: 3500
                  , stack: 6
-             })
+             });
+
+           jQuery('.mydatepicker, #datepicker').datepicker();
          });
       </script>
       <!--Style Switcher -->
       <script src="../plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+      <script src="../plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+      <script src="../plugins/bower_components/sweetalert/sweetalert.min.js"></script>
+
+
+      <script src="js/angular.min.js"></script>
+      <script src="js/createCea.js"></script>
    </body>
 </html>

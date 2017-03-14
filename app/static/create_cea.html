@@ -177,7 +177,7 @@
         <li>
           <a href="cea_list.html">
             <i class="fa fa-table"></i>
-            <span>资本性支出申请查询</span>
+            <span>资本性支出查询</span>
           </a>
         </li>
         <li>
@@ -369,114 +369,115 @@
                     </label>
                   </div>
                   <div class="form-group col-md-12">
-                    <label class="col-lg-3 control-label">人工费(A):</label>
+                    <label class="col-lg-3 control-label">人工费:</label>
                     <div class="col-lg-9">
                       <input type="number" ng-model="params.feea" ng-change="cal()" class="bg-focus form-control">
                     </div>
                   </div>
                   <div class="form-group col-md-12">
-                    <label class="col-lg-3 control-label">材料费(B):</label>
+                    <label class="col-lg-3 control-label">材料费:</label>
                     <div class="col-lg-9">
                       <input type="number" ng-model="params.feeb" ng-change="cal()" class="bg-focus form-control">
                     </div>
                   </div>
                   <div class="form-group col-md-12">
-                    <label class="col-lg-3 control-label">综合费用(C):</label>
+                    <label class="col-lg-3 control-label">综合费用:</label>
                     <div class="col-lg-9">
                       <input type="number" ng-model="params.feec" ng-change="cal()" class="bg-focus form-control">
                     </div>
                   </div>
                   <div class="form-group col-md-12">
-                    <label class="col-lg-3 control-label">外包成本(D):</label>
+                    <label class="col-lg-3 control-label">外包成本:</label>
                     <div class="col-lg-9">
                       <input type="number" ng-model="params.feed" ng-change="cal()" class="bg-focus form-control">
                     </div>
                   </div>
 
                   <div class="form-group col-md-12">
-                    <label class="col-lg-5 control-label">小计(E=A+B+C+D):</label>
-                    <div class="col-lg-7">
+                    <label class="col-lg-3 control-label">小计:</label>
+                    <div class="col-lg-9">
                       <input type="number" ng-model="params.feee" disabled placeholder="" class="bg-focus form-control">
                     </div>
                   </div>
 
-                  <div class="form-group col-md-12">
+                  <div class="form-group col-md-12" style="margin-top: 15px;">
                     <label class="control-label col-lg-offset-1">
                       <h5><strong>2.预计工程费用</strong></h5>
                     </label>
                   </div>
                   <div class="form-group col-md-12">
-                    <label class="col-lg-3 control-label">设计费(F):</label>
+                    <label class="col-lg-3 control-label">设计费:</label>
                     <div class="col-lg-9">
                       <input type="number" ng-model="params.feef" ng-change="cal()" class="bg-focus form-control">
                     </div>
                   </div>
                   <div class="form-group col-md-12">
-                    <label class="col-lg-3 control-label">监理费(G):</label>
+                    <label class="col-lg-3 control-label">监理费:</label>
                     <div class="col-lg-9">
                       <input type="number" ng-model="params.feeg" ng-change="cal()" class="bg-focus form-control">
                     </div>
                   </div>
-                  <div class="form-group col-md-12">
-                    <label class="col-lg-3 control-label">审计费(H):</label>
-                    <div class="col-lg-9">
-                      <input type="number" ng-model="params.feeh" ng-change="cal()" class="bg-focus form-control">
-                    </div>
-                  </div>
+
 
                 </div>
 
                 <div class="col-md-6">
                   <div class="form-group col-md-12">
-                    <label class="col-lg-3 control-label">测绘费(I):</label>
+                    <label class="col-lg-3 control-label">审计费:</label>
+                    <div class="col-lg-9">
+                      <input type="number" ng-model="params.feeh" ng-change="cal()" class="bg-focus form-control">
+                    </div>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label class="col-lg-3 control-label">测绘费:</label>
                     <div class="col-lg-9">
                       <input type="number" ng-model="params.feei" ng-change="cal()" class="bg-focus form-control">
                     </div>
                   </div>
                   <div class="form-group col-md-12">
-                    <label class="col-lg-3 control-label">其他费用(J):</label>
+                    <label class="col-lg-3 control-label">其他费用:</label>
                     <div class="col-lg-9">
                       <input type="number" ng-model="params.feej" ng-change="cal()" class="bg-focus form-control">
                     </div>
                   </div>
 
                   <div class="form-group col-md-12">
-                    <label class="col-lg-5 control-label">小计(K=F+G+H+I+J):</label>
-                    <div class="col-lg-7">
+                    <label class="col-lg-3 control-label">小计:</label>
+                    <div class="col-lg-9">
                       <input type="number" ng-model="params.feek" disabled placeholder="" class="bg-focus form-control">
                     </div>
                   </div>
 
                   <div class="form-group col-md-12">
-                    <label class="control-label col-lg-5">
-                      <h5><strong>3.预计总成本(L=K+E)</strong></h5>
+                    <label class="control-label col-lg-3">
+                      <h5><strong>3.预计总成本</strong></h5>
                     </label>
-                    <div class="col-lg-7">
+                    <div class="col-lg-9">
                       <input type="number" ng-model="params.feel" disabled placeholder="" class="bg-focus form-control">
                     </div>
                   </div>
 
                   <div class="form-group col-md-12">
-                    <label class="control-label col-lg-5">
-                      <h5><strong>4.预计总收入(M)</strong></h5>
+                    <label class="control-label col-lg-3">
+                      <h5><strong>4.预计总收入</strong></h5>
                     </label>
-                    <div class="col-lg-7">
+                    <div class="col-lg-9">
                       <input type="number" ng-model="params.feem" ng-change="cal()" class="bg-focus form-control">
                     </div>
                   </div>
                   <div class="form-group col-md-12">
-                    <label class="control-label col-lg-5">
-                      <h5><strong>5.预计毛利(N=M-L)</strong></h5>
+                    <label class="control-label col-lg-3">
+                      <h5><strong>5.预计毛利</strong></h5>
                     </label>
-                    <div class="col-lg-7">
+                    <div class="col-lg-9">
                       <input type="number" ng-model="params.feen" disabled placeholder="" class="bg-focus form-control">
                     </div>
                   </div>
                   <div class="form-group col-md-12">
-                    <label class="control-label col-lg-5">
-                      <h5><strong>6.预计毛利率(O=N/M)</strong></h5>
+                    <label class="control-label col-lg-3">
+                      <h5><strong>6.预计毛利率</strong></h5>
                     </label>
-                    <div class="col-lg-7">
+                    <div class="col-lg-9">
                       <input type="number" ng-model="params.feeo" disabled placeholder="" class="bg-focus form-control">
                     </div>
                   </div>
